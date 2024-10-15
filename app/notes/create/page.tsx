@@ -74,11 +74,15 @@ export default function CreateNote() {
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel data-testid="title-label">Title</FormLabel>
                 <FormControl>
-                  <Input placeholder="A Note" {...field} />
+                  <Input
+                    placeholder="A Note"
+                    {...field}
+                    data-testid="title-input"
+                  />
                 </FormControl>
-                <FormMessage />
+                <FormMessage data-testid="title-message" />
               </FormItem>
             )}
           />
@@ -87,18 +91,21 @@ export default function CreateNote() {
             name="content"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Content</FormLabel>
+                <FormLabel data-testid="content-label">Content</FormLabel>
                 <FormControl>
                   <Textarea
+                    data-testid="content-input"
                     placeholder="Something thoughtful, hopefully."
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage data-testid="content-message" />
               </FormItem>
             )}
           />
-          <Button type="submit">Submit</Button>
+          <Button type="submit" data-testid="submit-button">
+            Submit
+          </Button>
         </form>
       </Form>
     </div>
