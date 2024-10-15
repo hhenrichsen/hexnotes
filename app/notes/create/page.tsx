@@ -45,7 +45,6 @@ export default function CreateNote() {
     content: string;
   }) {
     const noteResponse = await createNoteAction({ title, content });
-    console.log(noteResponse);
     if (noteResponse.ok) {
       router.push(`/notes/${noteResponse.id}`);
     } else {

@@ -15,7 +15,6 @@ export default async function ViewNote({ params }: { params: { id: string } }) {
 
   const user = await client.auth.getUser();
   if (user.error) {
-    console.log(user);
     redirect("/sign-in");
   }
 
