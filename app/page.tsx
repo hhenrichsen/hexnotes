@@ -43,11 +43,14 @@ export default async function Index() {
   }
 
   return (
-    <div>
+    <div className="flex flex-col flex-1 w-full md:max-w-prose max-w-full gap-4">
+      <h2 className="text-lg border-b border-b-foreground w-full p-2">
+        Your Notes
+      </h2>
       {notes.data.map(({ id, title }) => {
         return (
-          <Link href={`notes/${id}`}>
-            <div key={id}>
+          <Link href={`notes/${id}`} key={id} className="p-2">
+            <div>
               <h2>{title}</h2>
             </div>
           </Link>
