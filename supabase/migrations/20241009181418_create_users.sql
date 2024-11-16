@@ -1,14 +1,14 @@
-CREATE TABLE IF NOT EXISTS public.users (
+CREATE TABLE IF NOT EXISTS public.profiles (
     id UUID REFERENCES auth.users NOT NULL PRIMARY KEY,
-    email VARCHAR(255),
+    email VARCHAR(255) UNIQUE NOT NULL,
     fullname VARCHAR(255)
 );
 CREATE INDEX IF NOT EXISTS users_email_idx ON users (email);
 
-ALTER TABLE public.users ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "User info is visible to the user."
-ON public.users FOR SELECT
+ON public.profiles FOR SELECT
 USING (auth.uid() = id);
 
 -- This trigger is required to populate the users table with the full_name from the auth.users table.
@@ -23,7 +23,7 @@ full_name VARCHAR(255);
 BEGIN
 full_name := (new.raw_user_meta_data ->> 'full_name');
 
-INSERT INTO public.users (id, email, fullname)
+INSERT INTO public.profiles (id, email, fullname)
 VALUES (new.id, new.email, full_name);
 
 RETURN new;

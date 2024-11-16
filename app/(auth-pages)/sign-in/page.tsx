@@ -1,5 +1,4 @@
 "use client";
-import { Message } from "@/components/form-message";
 import { Button } from "../../../components/ui/button";
 import { SVGProps } from "react";
 import { createClient } from "../../../utils/supabase/client";
@@ -19,14 +18,14 @@ const GoogleLogo = (props: SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export default function Login({ searchParams }: { searchParams: Message }) {
+export default function Login() {
   const supabase = createClient();
 
   const googleSignIn = () => {
     supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "http://localhost:3001/auth/callback",
+        redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/auth/callback`,
       },
     });
   };
